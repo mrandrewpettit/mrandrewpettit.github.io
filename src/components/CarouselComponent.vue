@@ -1,9 +1,9 @@
 <template>
     <div class="carouselContainer">
         <div class="slideContainer" >
-            <img class="slide" src="../assets/posters/ElementalPoster.png" />
-            <img class="slide" src="../assets/posters/InsideOut2Poster.png" />
-            <img class="slide" src="../assets/posters/CenotePoster.png" />
+            <router-link class="slide" to="/"><img src="../assets/posters/ElementalPoster.png" /></router-link>
+            <router-link class="slide" to="/"><img src="../assets/posters/InsideOut2Poster.png" /></router-link>
+            <router-link class="slide" to="/"><img src="../assets/posters/CenotePoster.png" /></router-link>
         </div>
         <div class="buttonContainer">
             <div class="button" v-on:click="plusSlide(-1)">&#10094;</div>
@@ -82,7 +82,11 @@ export default {
     display: flex;
 }
 
-.slide {
+.slide:hover {
+    filter: brightness(85%);
+}
+
+.slide img {
     max-height: 100%;
     max-width: 100%;
 }
