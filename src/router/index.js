@@ -1,22 +1,34 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import VScrollLock from 'v-scroll-lock'
 
 Vue.use(VueRouter)
+Vue.use(VScrollLock)
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: () => import(`@/views/HomeView.vue`),
+    meta: { layout: "HomeLayout" }
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/reel',
+    name: 'reel',
+    component: () => import(`@/views/ReelView.vue`),
+    meta: { layout: "HomeLayout" }
+  },
+  {
+    path: '/work',
+    name: 'work',
+    component: () => import(`@/views/WorkView.vue`),
+    meta: { layout: "HomeLayout" }
+  },
+  {
+    path: '/resume',
+    name: 'resume',
+    component: () => import(`@/views/ResumeView.vue`),
+    meta: { layout: "HomeLayout" }
   }
 ]
 
