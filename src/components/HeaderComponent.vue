@@ -54,6 +54,7 @@ export default {
     justify-content: space-between;
 
     width: 100%;
+    height: 6em;
 }
 
 .backdrop {
