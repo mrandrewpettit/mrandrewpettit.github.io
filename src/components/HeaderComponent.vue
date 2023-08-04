@@ -190,23 +190,90 @@ export default {
 /* Tablet Styles */
 @media only screen and (min-width: 401px) and (max-width: 960px) {
     .header {
-        position: fixed;
+        position: absolute;
         padding: 2em 3em;
     }
-    
-    .menuIcon {
-        display: none;
+
+    /******************************/
+    /***** Hamburger Icon/Anim ****/
+    /******************************/
+    .hamburgerIcon,
+    .xIcon {
+        z-index: 2;
     }
 
-    .menu {
+    .hamburgerIcon {
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
 
-        width: 15em;
+        height: 40px;
+    }
+
+    .bar1,
+    .bar2,
+    .bar3 {
+        height: 0.5em;
+        width: 40px;
+
+        background-color: #fff;
+        opacity: 100;
+
+        transition: opacity 0.2s ease, transform 0.4s ease;
+    }
+
+    .xIcon .bar1 {
+        transform: translate(0em, 0.5em) rotate(-45deg);
+    }
+
+    .xIcon .bar2 {
+        opacity: 0;
+    }
+
+    .xIcon .bar3 {
+        transform: translate(0em, -0.5em) rotate(45deg);
+    }
+
+    /******************************/
+    /************ Menu ************/
+    /******************************/
+    .menu {
+        position: fixed;
+        left:0vw;
+        top: 0vh;
+        z-index: 1;
+
+        height: 100vh;
+        width: 100vw;
+
+        backdrop-filter: blur(0.5em) brightness(0.25);
+        background-color: transparent;
+
+        transition: top 0.4s ease;
+    }
+
+    .menuActive {
+        top: 0;
+    }
+
+    .menuInactive {
+        top: -100vw;
+    }
+
+    .linkContainer {
+        position: relative;
+        top: 7em;
+
+        margin: 3em;
     }
 
     .link {
-        font-size: 1.1em;
+        font-size: 2em;
+        text-decoration: none;
+    }
+
+    .link:hover {
+        color: gray;
     }
 }
 
@@ -226,6 +293,10 @@ export default {
         justify-content: space-between;
 
         width: 15em;
+    }
+
+    .linkContainer {
+        z-index: 1;
     }
 
     .link {
