@@ -1,2 +1,0 @@
-"use strict";(self["webpackChunkmrandrewpettit_github_io"]=self["webpackChunkmrandrewpettit_github_io"]||[]).push([[952],{4952:function(t,e,r){r.r(e),r.d(e,{default:function(){return f}});var n=function(){var t=this;t._self._c;return t._m(0)},i=[function(){var t=this,e=t._self._c;return e("div",[e("div",{staticClass:"headerProxy"}),e("h1",[t._v("WORK")])])}],u={name:"WorkView"},s=u,a=r(1001),c=(0,a.Z)(s,n,i,!1,null,"089f77c1",null),f=c.exports}}]);
-//# sourceMappingURL=952.91a8d091.js.map
