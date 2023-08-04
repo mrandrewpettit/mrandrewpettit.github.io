@@ -207,14 +207,14 @@ export default {
         flex-direction: column;
         justify-content: space-between;
 
-        height: 40px;
+        height: 30px;
     }
 
     .bar1,
     .bar2,
     .bar3 {
-        height: 0.5em;
-        width: 40px;
+        height: 0.3em;
+        width: 35px;
 
         background-color: #fff;
         opacity: 100;
@@ -223,7 +223,7 @@ export default {
     }
 
     .xIcon .bar1 {
-        transform: translate(0em, 0.5em) rotate(-45deg);
+        transform: translate(0em, 0.3em) rotate(-45deg);
     }
 
     .xIcon .bar2 {
@@ -231,7 +231,7 @@ export default {
     }
 
     .xIcon .bar3 {
-        transform: translate(0em, -0.5em) rotate(45deg);
+        transform: translate(0em, -0.3em) rotate(45deg);
     }
 
     /******************************/
