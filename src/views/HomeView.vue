@@ -1,12 +1,17 @@
 <template>
   <div>
-    <div class="section reel">
-      <video autoplay muted loop class="highlightReel">
-        <source src="../assets/video/temp/HighlightTemp_mobile.mp4" type="video/mp4">
+    <div v-bind:class="[widthFill ? 'section reel widthFill' : 'section reel heightFill']">
+      <!-- This is for sure not the best way to do responsive video because it
+        loads two videos at once but it's what I got working right now-->
+      <video autoplay muted loop v-show="mobileVideo" class="highlightReel">
+        <source src="../assets/video/HighlightReel/HighlightReel_Mobile.mp4" type="video/mp4">
+      </video>
+      <video autoplay muted loop v-show="desktopVideo" class="highlightReel">
+        <source src="../assets/video/HighlightReel/HighlightReel_Desktop.mp4" type="video/mp4">
       </video>
       <a class="arrow" href="#bio">&#11206;</a>
     </div>
-    <div id="bio">
+    <!-- <div id="bio">
       <div class="margin"></div>
       <div class="content">
         <div class="about">
@@ -33,17 +38,65 @@
         </div>
       </div>
       <div class="margin"></div>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
-import CarouselComponent from "../components/CarouselComponent.vue"
+// import CarouselComponent from "../components/CarouselComponent.vue"
 
 export default {
   name: 'HomeView',
-  components: {
-    CarouselComponent,
+  //components: {
+    // CarouselComponent,
+  //},
+  data() {
+    return {
+      mobileVideo: false,
+      desktopVideo: false,
+      widthFill: true
+    }
+  },
+  methods: {
+    queryVideo() {
+      var windowWidth = window.innerWidth ? window.innerWidth : this.$attrs(window).width();
+      if (windowWidth > 400) {
+        this.mobileVideo = false;
+        this.desktopVideo = true;
+      } else {
+        this.mobileVideo = true;
+        this.desktopVideo = false;
+      }
+    },
+    queryFill() {
+      var windowWidth = window.innerWidth ? window.innerWidth : this.$attrs(window).width();
+      var windowHeight = window.innerHeight ? window.innerHeight : this.$attrs(window).height();
+      var videoWidth = 1920;
+      var videoHeight = 1080;
+
+      var windowAspect = windowWidth / windowHeight;
+      var videoAspect = videoWidth / videoHeight;
+
+      if (windowAspect > videoAspect) {
+        this.widthFill = true;
+      } else {
+        this.widthFill = false;
+      }
+    },
+    myEventHandler() {
+      this.queryVideo();
+      this.queryFill();
+    }
+  },
+  mounted() {
+    this.queryVideo();
+    this.queryFill();
+  },
+  created() {
+    window.addEventListener("resize", this.myEventHandler);
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.meEventHandler);
   }
 }
 </script>
@@ -53,7 +106,7 @@ export default {
   display: flex;
 
   height: 100vh;
-  width: 100vw;
+  width: 100%;
 }
 
 .margin {
@@ -69,11 +122,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-x: hidden;
-}
-
-.highlightReel {
-  height: 100%;
 }
 
 .arrow {
@@ -157,4 +205,20 @@ export default {
   max-width: 100%;
 }
 
+.heightFill {
+  overflow-x: hidden;
+}
+
+.heightFill .highlightReel {
+  height: 100%;
+}
+
+.widthFill {
+  overflow-y: hidden;
+}
+
+.widthFill .highlightReel {
+  width: 100%;
+  z-index: 0;
+}
 </style>

@@ -53,6 +53,8 @@ export default {
     align-items: center;
     justify-content: space-between;
 
+    z-index: 1;
+
     width: 100%;
     height: 6em;
 }
@@ -164,7 +166,7 @@ export default {
     }
 
     .menuActive {
-        left: 0;
+        left: 0vw;
     }
 
     .menuInactive {
@@ -254,11 +256,11 @@ export default {
     }
 
     .menuActive {
-        top: 0;
+        top: 0vh;
     }
 
     .menuInactive {
-        top: -100vw;
+        top: -100vh;
     }
 
     .linkContainer {
@@ -294,14 +296,16 @@ export default {
         justify-content: space-between;
 
         width: 15em;
-    }
-
-    .linkContainer {
-        z-index: 1;
+        z-index: 0;
     }
 
     .link {
         font-size: 1.1em;
+        z-index: 2;
+    }
+
+    .link:hover {
+        color: gray;
     }
 }
 
