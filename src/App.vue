@@ -24,6 +24,8 @@ export default {
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 
