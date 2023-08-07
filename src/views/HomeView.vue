@@ -9,9 +9,10 @@
       <video autoplay muted loop v-show="desktopVideo" class="highlightReel">
         <source src="../assets/video/HighlightReel/HighlightReel_Desktop.mp4" type="video/mp4">
       </video>
+      <router-link to="/reel" class="reelButton">VIEW DEMO REEL</router-link>
       <a class="arrow" href="#bio">&#11206;</a>
     </div>
-    <!-- <div id="bio">
+    <div id="bio">
       <div class="margin"></div>
       <div class="content">
         <div class="about">
@@ -29,7 +30,7 @@
           </div>
         </div>
         <div class="work">
-          <CarouselComponent />
+          <!--<CarouselComponent />-->
         </div>
         <div class="employers">
           <img id="pixarLogo" src="../assets/logos/PixarLogo_black.svg" />
@@ -38,7 +39,7 @@
         </div>
       </div>
       <div class="margin"></div>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -124,24 +125,44 @@ export default {
   align-items: center;
 }
 
+.reelButton {
+  position: absolute;
+  top: 80vh;
+
+  padding: 1em;
+
+  text-align: center;
+  font-weight: bold;
+  color: rgb(58, 58, 58);
+
+  opacity: 70%;
+
+  text-decoration: none;
+  background-color: rgb(201, 201, 201);
+  backdrop-filter: blur(0.15em) brightness(0.8);
+
+  border-radius: 0.5em;
+}
+
+.reelButton:hover {
+  opacity: 100%;
+  background-color: white;
+  backdrop-filter: blur(0.0em);
+}
+
 .arrow {
   position: absolute;
   top: 85vh;
-  left: auto;
 
-  font-size: 5em;
+  font-size: 10vh;
 
   text-decoration: none;
   color: white;
-  opacity: 75%;
+  opacity: 15%;
 }
 
 .arrow:hover {
   opacity: 100%;
-}
-
-.arrow:active {
-  color: gray;
 }
 
 #bio {
