@@ -283,7 +283,7 @@ export default {
 /* Desktop Styles */
 @media only screen and (min-width: 961px) {
     .header {
-        position: fixed;
+        position: absolute;
         padding: 2em 3em;
     }
         
