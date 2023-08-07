@@ -63,6 +63,9 @@ export default {
     },
     mounted() {
         this.autoSlide(true);
+    },
+    destroyed() {
+        clearTimeout(this.autoTimeout);
     }
 }
 </script>
@@ -76,10 +79,13 @@ export default {
 
     height: 100%;
     width: 100%;
+    padding: 2em 0em;
 }
 
 .slideContainer {
     display: flex;
+    justify-content: center;
+    height: 100%;
 }
 
 .slide:hover {
@@ -88,7 +94,7 @@ export default {
 
 .slide img {
     max-height: 100%;
-    max-width: 100%;
+    max-width: 100%
 }
 
 .buttonContainer {
@@ -96,7 +102,7 @@ export default {
     align-items: center;
     justify-content: space-between;
     height: 10%;
-    width: 100%;
+    width: 15em;
 }
 
 .button {
@@ -118,7 +124,7 @@ export default {
     align-items: center;
     justify-content: space-between;
     height: 100%;
-    width: 33.3333%
+    width: 33.3333%;
 }
 
 .indicator {

@@ -13,49 +13,55 @@
       <a class="arrow" href="#bio">&#11206;</a>
     </div>
     <div id="bio">
-      <div class="margin"></div>
-      <div class="content">
-        <div class="about">
-          <img src="../assets/TMP/TMPProfile.jpg" />
-          <div class="description">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Aliquet 
-              risus feugiat in ante metus dictum at.</p>
-            <p> Elementum nibh tellus molestie nunc non. Cursus sit amet dictum 
-              sit amet.</p>
+      <div class="HasMargin">
+        <div class="margin"></div>
+        <div class="content">
+          <div class="about">
+              <img src="../assets/image/Profile.jpg" />
+              <div class="description">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
+                  eiusmod tempor incididunt ut labore et dolore magna aliqua. Aliquet 
+                  risus feugiat in ante metus dictum at.</p>
+                <p> Elementum nibh tellus molestie nunc non. Cursus sit amet dictum 
+                  sit amet.</p>
+                <div class="laurels">
+                  <img src="../assets/laurels/CTAWinnerLaurel.png" />
+                  <img src="../assets/laurels/LAFilmFestivalLaurel.png" />
+                </div>
+              </div>
           </div>
-          <div class="laurels">
-            <img src="../assets/laurels/CTAWinnerLaurel.png" />
-            <img src="../assets/laurels/LAFilmFestivalLaurel.png" />
+          <div class="work">
+            <CarouselComponent v-bind:class="[showCarousel ? 'show' : 'hide']"/>
+            <GalleryComponent v-bind:class="[showCarousel ? 'hide' : 'show']"/>
           </div>
         </div>
-        <div class="work">
-          <!--<CarouselComponent />-->
-        </div>
-        <div class="employers">
-          <img id="pixarLogo" src="../assets/logos/PixarLogo_black.svg" />
-          <img src="../assets/logos/AngelStudiosLogo_black.svg" />
-          <img src="../assets/logos/BYUTvLogo_black.svg" />
-        </div>
+        <div class="margin"></div>
       </div>
-      <div class="margin"></div>
+      <div class="employers">
+        <img id="pixarLogo" src="../assets/logos/PixarLogo_black.svg" />
+        <img src="../assets/logos/AngelStudiosLogo_black.svg" />
+        <img src="../assets/logos/BYUTvLogo_black.svg" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-// import CarouselComponent from "../components/CarouselComponent.vue"
+import CarouselComponent from "../components/CarouselComponent.vue"
+import GalleryComponent from "../components/Gallery.vue"
 
 export default {
   name: 'HomeView',
-  //components: {
-    // CarouselComponent,
-  //},
+  components: {
+    CarouselComponent,
+    GalleryComponent
+  },
   data() {
     return {
       mobileVideo: false,
       desktopVideo: false,
-      widthFill: true
+      widthFill: true,
+      showCarousel: true
     }
   },
   methods: {
@@ -87,11 +93,20 @@ export default {
     myEventHandler() {
       this.queryVideo();
       this.queryFill();
+    },
+    queryPosters() {
+      var windowWidth = window.innerWidth ? window.innerWidth : this.$attrs(window).width();
+      if (windowWidth > 400) {
+        this.showCarousel = false;
+      } else {
+        this.showCarousel = true;
+      }
     }
   },
   mounted() {
     this.queryVideo();
     this.queryFill();
+    this.queryPosters();
   },
   created() {
     window.addEventListener("resize", this.myEventHandler);
@@ -102,21 +117,12 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .section {
   display: flex;
 
   height: 100vh;
   width: 100%;
-}
-
-.margin {
-  height: 100vh;
-  width: 10vw;
-}
-
-.content {
-  width: 80vw;
 }
 
 .reel {
@@ -147,7 +153,6 @@ export default {
 .reelButton:hover {
   opacity: 100%;
   background-color: white;
-  backdrop-filter: blur(0.0em);
 }
 
 .arrow {
@@ -158,7 +163,7 @@ export default {
 
   text-decoration: none;
   color: white;
-  opacity: 15%;
+  opacity: 50%;
 }
 
 .arrow:hover {
@@ -167,59 +172,16 @@ export default {
 
 #bio {
   display: flex;
-
-  height: 150vh;
-  width: 100vw;
-}
-
-.margin {
-  height: 100%;
-}
-
-.about {
-  display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 45%;
-  padding: 2em 0;
-}
-
-.about img {
-  max-width: 100%;
-}
-
-.about .description p {
-  padding: 1em 0;
-}
-
-.laurels {
-  display: flex;
-  justify-content: space-around;
-}
-
-.laurels img{
-  max-width: 40%;
-}
-
-.work {
-  height: 42.5%;
-  padding: 1em;
-}
-
-.employers {
-  position: relative;
-  left: -10vw;
-  height: 12.5%;
   width: 100vw;
-  background-color: #fff;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
 }
 
-.employers img {
-  max-height: 30%;
-  margin: 0.75em 1em;
+.HasMargin {
+  display: flex;
+}
+
+.work .hide {
+  display: none;
 }
 
 #pixarLogo {
@@ -241,5 +203,179 @@ export default {
 .widthFill .highlightReel {
   width: 100%;
   z-index: 0;
+}
+
+/* Mobile Styles */
+@media only screen and (max-width: 400px) {
+  .content {
+    width: 80vw;
+  }
+
+  .margin {
+    height: 100%;
+    width: 10vw;
+  }
+
+  .about {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2em 0;
+  }
+
+  .about img {
+    max-width: 100%;
+  }
+
+  .about .description p {
+    padding: 1em 0;
+  }
+
+  .laurels {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .laurels img{
+    max-width: 40%;
+  }
+
+  .work {
+    height: 35em;
+  }
+
+  .employers {
+    position: relative;
+    height: 10em;
+    width: 100vw;
+    background-color: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/* Tablet Styles */
+@media only screen and (min-width: 401px) and (max-width: 960px) {
+  .content {
+    width: 70vw;
+  }
+
+  .margin {
+    height: 100%;
+    width: 15vw;
+  }
+
+  .about {
+    display: flex;
+    justify-content: space-between;
+    padding: 2em 0;
+  }
+
+  .about img {
+    max-height: 20em;
+  }
+
+  .about .description {
+    padding-left: 1em;
+  }
+
+  .about .description p {
+    padding: 1em 0;
+  }
+
+  .laurels {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .laurels img{
+    max-width: 40%;
+  }
+
+  .work {
+    height: 21em;
+    padding:2em 0em;
+  }
+
+  .employers {
+    height: 5em;
+    width: 100vw;
+    background-color: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+  }
+
+  .employers img {
+    max-height: 50%;
+    padding: 0em 2.5em;
+  }
+}
+
+/* Desktop Styles */
+@media only screen and (min-width: 961px) {
+  .content {
+    width: 65vw;
+  }
+
+  .margin {
+    height: 100%;
+    width: 17.5vw;
+  }
+
+  .main {
+    display: flex;
+    justify-content: space-between;
+    height: 80%;
+  }
+
+  .about {
+    display: flex;
+    justify-content: space-between;
+    padding: 2em 0;
+  }
+
+  .about img {
+    max-height: 20em;
+  }
+
+  .about .description {
+    padding-left: 1em;
+  }
+
+  .about .description p {
+    padding: 1em 0;
+  }
+
+  .laurels {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .laurels img{
+    max-width: 30%;
+  }
+
+  .work {
+    height: 35em;
+    padding: 2em;
+  }
+
+  .employers {
+    height: 7em;
+    width: 100vw;
+    background-color: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+  }
+
+  .employers img {
+    max-height: 50%;
+    padding: 0em 3.5em;
+  }
 }
 </style>

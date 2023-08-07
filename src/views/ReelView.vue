@@ -11,7 +11,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .headerProxy {
   height: 6em;
   background-color: black;
