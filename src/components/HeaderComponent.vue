@@ -14,9 +14,9 @@
             <li class="linkContainer">
                 <router-link to="/reel" class="link">Reel</router-link>
             </li>
-            <li class="linkContainer">
+            <!--<li class="linkContainer">
                 <router-link to="/work" class="link">Work</router-link>
-            </li>
+            </li>-->
             <li class="linkContainer">
                 <router-link to="/resume" class="link">Resume</router-link>
             </li>
@@ -295,7 +295,7 @@ export default {
         display: flex;
         justify-content: space-between;
 
-        width: 15em;
+        width: 10em;
         z-index: 0;
     }
 
