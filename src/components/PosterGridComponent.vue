@@ -16,9 +16,7 @@ export default {
             "images//posters/ElementalPoster.png",
             "images//posters/InsideOut2Poster.png",
             "images//posters/CenotePoster.png"
-            ],
-            timer: null,
-            currentIndex: 0
+            ]
         };
     }
 };
@@ -26,19 +24,24 @@ export default {
 
 <style scoped>
 .poster-grid-container {
-    display: grid;
+    /*display: grid;
     justify-content: center;
     grid-template-columns: repeat(auto-fill, minmax(1em, 15em));
-    grid-gap: 1em;
+    grid-gap: 1em;*/
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
 }
 
 .poster-container {
-    width: 100%;
-    height: auto;
+    width: 13em;
+    margin: 1em;
 }
 
 img {
-    height: 100%;
+    display: block;
     width: 100%;
 }
 </style>

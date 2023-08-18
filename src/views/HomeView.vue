@@ -375,7 +375,7 @@ export default {
     .auto-slider-container {
         position: absolute;
         z-index: 1;
-        top: calc(((100vh - 35vw) / 2) + 4em);
+        top: calc(((100vh - 35vw) / 2) + 2em);
         left: 2.5vw;
 
         height: 35vw;
@@ -387,7 +387,7 @@ export default {
         top: -4em;
 
         display: block;
-        height: calc(100vh + 4em);
+        height: 100vh;
         width: 35%;
         background-color: #313539;
     }
@@ -397,8 +397,9 @@ export default {
 
         flex-direction: column;
         align-items: flex-end;
+        justify-content: center;
         width: 65%;
-        height: 100%;
+        height: calc(100% - 4em);;
         padding: 15em 0;
 
         background-color: #edefef;
@@ -413,7 +414,6 @@ export default {
         height: auto;
         width: 67.5%;
         margin-right: 3vw;
-
     }
 
     .title-card-container .txt-container #name {
@@ -423,7 +423,6 @@ export default {
         
         font-size: 3.5vw;
         font-weight: 800;
-
     }
 
     .title-card-container .txt-container #motto {
@@ -449,6 +448,7 @@ export default {
     /* posters */
 
     .poster-container {
+        /*height: 25em;*/
         width: 85%;
         margin: 2.5em auto;
         margin-bottom: 5em;
@@ -456,6 +456,17 @@ export default {
 }
 
 @media only screen and (min-width: 1200px) {
+    /* about me */
+
+    .about-me-container .context {
+        flex-direction: row;
+        margin: 0 15em;
+    }
+
+    .about-me-container img {
+        width: 20em;
+    }
+    
     /* posters */
     
     .poster-container {
