@@ -78,10 +78,23 @@ export default {
             if (isMobile.matches) {
                 this.currentPosterComponent = CarouselComponent;
             }
+        },
+        TogglePosterComponent() {
+            let monitorWidth = window.matchMedia("(max-width: 600px)");
+
+            if (monitorWidth.matches) {
+                this.currentPosterComponent = CarouselComponent;
+            } else {
+                this.currentPosterComponent = PosterGridComponent;
+            }
         }
     },
     created() {
         this.GetPosterComponent();
+        window.addEventListener("resize", this.TogglePosterComponent);
+    },
+    destroyed() {
+        window.addEventListener("resize", this.TogglePosterComponent);
     }
 }
 </script>
