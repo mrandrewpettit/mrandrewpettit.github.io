@@ -4,9 +4,9 @@
         <input class="menu-btn" id="menu-btn" type="checkbox" />
         <label class="menu-icon" for="menu-btn" @click="ToggleScrollLock()"><span class="navicon"></span></label>
         <ul class="menu">
-            <li><router-link to="/">Home</router-link></li>
-            <li><router-link to="/reel">Demo Reel</router-link></li>
-            <li><router-link to="/resume">Resume</router-link></li>
+            <li><router-link to="/" class="menu-link">Home</router-link></li>
+            <li><router-link to="/reel" class="menu-link">Demo Reel</router-link></li>
+            <li><router-link to="/resume" class="menu-link">Resume</router-link></li>
         </ul>
     </header>
 </template>
@@ -27,34 +27,47 @@ export default {
                 this.isScrollLocked = false;
             }
         },
-        TransitionBackground() {
+        ToggleHeaderBackground() {
             let monitorWidth = window.matchMedia("(min-width: 900px)");
-            let header = document.getElementsByClassName("header")[0];
-            let logo = document.getElementsByClassName("logo")[0];
             let scrollPos = window.pageYOffset;
-            
-            if (monitorWidth.matches && scrollPos == 0) {
-                header.style.background = "transparent";
-                logo.style.background = "#edefef";
-            } else if (monitorWidth.matches && scrollPos > 0){
-                header.style.background = "#edefef";
-                logo.style.background = "#313539";
+            let header = document.getElementsByClassName("header")[0];
+            let menuLinks = document.getElementsByClassName("menu-link");
+            let menuBtn = document.getElementsByClassName("menu-btn")[0];
+
+            /* check if hamburger menu is toggled on */
+            if(monitorWidth.matches && this.isScrollLocked) {
+                this.isScrollLocked = false;
+                menuBtn.checked = false;
             }
 
+            /* toggle box shadow */
             if (scrollPos == 0) {
                 header.style.boxShadow = "";
             } else {
                 header.style.boxShadow = "0px 2px 4px 0 rgba(0, 0, 0, 0.2)";
             }
+
+            /* toggle backgrund change above 900px width */
+            if (monitorWidth.matches && scrollPos == 0) {
+                header.style.background = "transparent";
+                for(let link of menuLinks) {
+                    link.style.color= "#313539";
+                }
+            } else {
+                header.style.background = "#313539";
+                for(let link of menuLinks) {
+                    link.style.color= "#edefef";
+                }
+            }
         }
     },
-    mounted() {
-        document.addEventListener("scroll", this.TransitionBackground);
-        document.addEventListener("resize", this.TransitionBackground);
+    created() {
+        document.addEventListener("scroll", this.ToggleHeaderBackground);
+        window.addEventListener("resize", this.ToggleHeaderBackground);
     },
     destroyed() {
-        document.removeEventListener("scoll", this.TransitionBackground)
-        document.removeEventListener("resize", this.TransitionBackground);
+        document.removeEventListener("scoll", this.ToggleHeaderBackground)
+        window.removeEventListener("resize", this.ToggleHeaderBackground);
     }
 }
 </script>
@@ -212,6 +225,10 @@ export default {
         width: 30%;
     }
 
+    .header li a {
+        color: #313539;
+    }
+
     /* menu icon */
 
     .header .menu-icon .navicon {
@@ -254,11 +271,6 @@ export default {
 
     .header li {
         float: left;
-    }
-
-    .header li a {
-        padding-right: 30px;
-        color: #313539;
     }
 
     /* menu */
