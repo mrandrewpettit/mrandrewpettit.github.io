@@ -165,7 +165,7 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: auto%;
+    height: auto;
     width: 90%;
 }
 
@@ -277,7 +277,7 @@ export default {
     mask-image: url(../assets/logos/BYUTVLogo_Mask.svg);
 }
 
-@media only screen and (min-width: 600px) and (max-width: 899px) {
+@media only screen and (min-width: 600px) {
     /* utilities */
     
     .btn {
@@ -301,10 +301,6 @@ export default {
 
     /* about me */
 
-    #about-me-anchor {
-        top: -6em;
-    }
-
     .about-me-container {
         display: flex;
         flex-direction: column;
@@ -320,7 +316,7 @@ export default {
 
     .about-me-container img {
         display: block;
-        width: 40vw;
+        width: 40%;
     }
 
     /* clients */
@@ -334,7 +330,7 @@ export default {
 
 }
 
-@media only screen and (min-width: 900px) and (max-width: 1199px) {
+@media only screen and (min-width: 900px) {
     /* utilities */
 
     .btn {
@@ -427,34 +423,14 @@ export default {
     }
 
     .title-card-container .btn-container {
-        flex-direction: row;
-        align-items: center;
-
         width: 60%;
         margin-right: 7.5vw;
     }
 
     /* about me */
 
-    #about-me-anchor {
-        top: -4em;
-    }
-
-    .about-me-container {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-    }
-
     .about-me-container .context {
-        display: flex;
-        align-items: center;
         margin: 0 15%;
-    }
-
-    .about-me-container img {
-        display: block;
-        width: 40%;
     }
 
     /* posters */
@@ -464,156 +440,13 @@ export default {
         margin: 2.5em auto;
         margin-bottom: 5em;
     }
-
-    /* clients */
-    .client-container {
-        flex-direction: row;
-        
-    }
-
-    .client-container .logo-container {
-        width: 15em;
-    }
 }
 
 @media only screen and (min-width: 1200px) {
-    /* utilities */
-
-    .btn {
-        height: 3.5em;
-        width: 45%;
-        border-radius: 2em;
-
-        font-size: 1em;
-    }
-
-
-    .heading {
-        display: block;
-        width: 50%;
-        padding-bottom: 0.5em;
-        border-bottom: solid 3px #29abe2;
-        margin: 1em auto;
-
-        color: #313539;
-
-        text-align: center;
-    }
-
-    /* title card */
-    .home-container {
-        display: flex;
-        height: 100vh;
-    }
-
-    .auto-slider-container {
-        position: absolute;
-        z-index: 1;
-        top: calc(((100vh - 35vw) / 2) + 4em);
-        left: 2.5vw;
-
-        height: 35vw;
-        width: auto;
-    }
-
-    #home-accent {
-        position: relative;
-        top: -4em;
-
-        display: block;
-        height: calc(100vh + 4em);
-        width: 35%;
-        background-color: #313539;
-    }
-
-    .title-card-container {
-        position: static;
-
-        flex-direction: column;
-        align-items: flex-end;
-        width: 65%;
-        height: 100%;
-        padding: 11em 0;
-
-        background-color: #edefef;
-
-        transform: translateY(0);
-    }
-
-    .title-card-container .txt-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        height: auto;
-        width: 67.5%;
-        margin-right: 3vw;
-    }
-
-    .title-card-container .txt-container #name {
-        padding-bottom: 1em;
-
-        color: #313539;
-        
-        font-size: 3.5vw;
-        font-weight: 800;
-
-    }
-
-    .title-card-container .txt-container #motto {
-        padding-top: 0em;
-
-        color: #313539;
-
-        font-size: 2vw;
-        text-align: right;
-    }
-
-    .title-card-container .btn-container {
-        flex-direction: row;
-        align-items: center;
-
-        width: 60%;
-        margin-right: 7.5vw;
-    }
-    
-    /* about me */
-
-    #about-me-anchor {
-        top: -4em;
-    }
-
-    .about-me-container {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .about-me-container .context {
-        display: flex;
-        align-items: center;
-        margin: 0 15%;
-    }
-
-    .about-me-container img {
-        display: block;
-        width: 40%;
-    }
-
     /* posters */
     
     .poster-container {
         width: 60%;
-        margin: 2.5em auto;
-        margin-bottom: 5em;
-    }
-
-    /* clients */
-    .client-container {
-        flex-direction: row;
-    }
-
-    .client-container .logo-container {
-        width: 15em;
     }
 }
 </style>
