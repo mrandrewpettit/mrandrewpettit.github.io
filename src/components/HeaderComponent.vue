@@ -1,12 +1,11 @@
 <template>
     <header class="header" v-scroll-lock="isScrollLocked">
         <router-link class="logo-container" to="/"><div class="logo"></div></router-link>
-        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <input class="menu-btn" id="menu-btn" type="checkbox" />
         <label class="menu-icon" for="menu-btn" @click="ToggleScrollLock()"><span class="navicon"></span></label>
         <ul class="menu">
             <li><router-link to="/">Home</router-link></li>
             <li><router-link to="/reel">Demo Reel</router-link></li>
-            <!--<li><router-link to="/reel">Projects</router-link></li>-->
             <li><router-link to="/resume">Resume</router-link></li>
         </ul>
     </header>
@@ -79,7 +78,7 @@ export default {
     float: left;
 
     height: 100%;
-    width: 60vw;
+    width: 40vw;
     margin-left: 3%;
 }
 
@@ -110,7 +109,7 @@ export default {
 
 .header li a {
     display: block;
-    padding: 20px 20px;
+    padding: 20px;
 
     color: #edefef;
     
@@ -206,20 +205,11 @@ export default {
     transform: translate(0, 10px) rotate(45deg);
 }
 
-@media only screen and (min-width: 600px) and (max-width: 899px) {
+@media only screen and (min-width: 600px) {
     /* header */
 
-    .header {
-        height: 6em;
-    }
-
     .header .logo-container {
-        width: 40%;
-    }
-
-    .header li a {
-        padding: 30px;        
-        font-size: 1.5em;
+        width: 30%;
     }
 
     /* menu icon */
@@ -239,10 +229,6 @@ export default {
 
     /* menu btn */
 
-    .header .menu-btn:checked~.menu {
-        max-height: 300px;
-    }
-
     .header .menu-btn:checked~.menu-icon .navicon:before {
         transform: translate(0, -12.5px) rotate(-45deg);
     }
@@ -252,7 +238,8 @@ export default {
     }
 }
 
-@media only screen and (min-width: 900px) and (max-width: 1199px) {
+@media only screen and (min-width: 900px) {
+    /* header */
     .header {
         background: transparent;
     }
@@ -270,9 +257,11 @@ export default {
     }
 
     .header li a {
-        padding: 20px 30px;
+        padding-right: 30px;
         color: #313539;
     }
+
+    /* menu */
 
     .header .menu {
         float: right;
@@ -286,35 +275,10 @@ export default {
 }
 
 @media only screen and (min-width: 1200px) {
-    .header {
-        background: transparent;
-    }
+    /* header */
 
     .header .logo-container {
         width: 15em;
-    }
-
-    .header ul {
-        background: transparent;
-    }
-
-    .header li {
-        float: left;
-    }
-
-    .header li a {
-        padding: 20px 30px;
-        color: #313539;
-    }
-
-    .header .menu {
-        float: right;
-        max-height: none;
-        clear: none;
-    }
-
-    .header .menu-icon {
-        display: none;
     }
 }
 </style>
