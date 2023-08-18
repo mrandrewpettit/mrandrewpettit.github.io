@@ -1,27 +1,15 @@
 <template>
-    <nav class="header">
-        <div class="backdrop" />
-        <router-link class="logo" to="/">
-            <img src="../assets/logos/apettit-logo.svg" />
-        </router-link>
-        <div v-bind:class="[isActive ? 'menuIcon xIcon' : 'menuIcon hamburgerIcon']"
-            v-scroll-lock="scrollLock" @click="toggleMenu()">
-            <div class="bar1"></div>
-            <div class="bar2"></div>
-            <div class="bar3"></div>
-        </div>
-        <ul v-bind:class="[isActive ? 'menu menuActive' : 'menu menuInactive']">
-            <li class="linkContainer">
-                <router-link to="/reel" class="link">Reel</router-link>
-            </li>
-            <!--<li class="linkContainer">
-                <router-link to="/work" class="link">Work</router-link>
-            </li>-->
-            <li class="linkContainer">
-                <router-link to="/resume" class="link">Resume</router-link>
-            </li>
+    <header class="header" v-scroll-lock="isScrollLocked">
+        <router-link class="logo-container" to="/"><div class="logo"></div></router-link>
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <label class="menu-icon" for="menu-btn" @click="ToggleScrollLock()"><span class="navicon"></span></label>
+        <ul class="menu">
+            <li><router-link to="/">Home</router-link></li>
+            <li><router-link to="/reel">Demo Reel</router-link></li>
+            <!--<li><router-link to="/reel">Projects</router-link></li>-->
+            <li><router-link to="/resume">Resume</router-link></li>
         </ul>
-    </nav>
+    </header>
 </template>
 
 <script>
@@ -29,284 +17,304 @@ export default {
     name: "HeaderComponent",
     data() {
         return {
-            isActive: false,
-            scrollLock: false
+            isScrollLocked: false
         }
     },
     methods: {
-        toggleMenu() {
-            if (this.isActive) {
-                this.isActive = false;
-                this.scrollLock = false;
+        ToggleScrollLock() {
+            if (!this.isScrollLocked) {
+                this.isScrollLocked = true;
             } else {
-                this.isActive = true;
-                this.scrollLock = true;
+                this.isScrollLocked = false;
+            }
+        },
+        TransitionBackground() {
+            let monitorWidth = window.matchMedia("(min-width: 900px)");
+            let header = document.getElementsByClassName("header")[0];
+            let logo = document.getElementsByClassName("logo")[0];
+            let scrollPos = window.pageYOffset;
+            
+            if (monitorWidth.matches && scrollPos == 0) {
+                header.style.background = "transparent";
+                logo.style.background = "#edefef";
+            } else if (monitorWidth.matches && scrollPos > 0){
+                header.style.background = "#edefef";
+                logo.style.background = "#313539";
+            }
+
+            if (scrollPos == 0) {
+                header.style.boxShadow = "";
+            } else {
+                header.style.boxShadow = "0px 2px 4px 0 rgba(0, 0, 0, 0.2)";
             }
         }
+    },
+    mounted() {
+        document.addEventListener("scroll", this.TransitionBackground);
+        document.addEventListener("resize", this.TransitionBackground);
+    },
+    destroyed() {
+        document.removeEventListener("scoll", this.TransitionBackground)
+        document.removeEventListener("resize", this.TransitionBackground);
     }
 }
 </script>
 
 <style scoped>
+/* header */
+
 .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    position: fixed;
+    z-index: 3;
 
-    z-index: 1;
-
+    height: 4em;
     width: 100%;
-    height: 6em;
+
+    background: #313539;
+
+    transition: background 0.2s ease-out;
 }
 
-.backdrop {
-    position: absolute;
-    left: 0;
-    top: 0;
+.header .logo-container {
+    float: left;
 
     height: 100%;
+    width: 60vw;
+    margin-left: 3%;
+}
+
+.header .logo {
+    height: 100%; 
     width: 100%;
+
+    background-color: #edefef;
+
+    mask-image: url(../assets/logos/APettitLogo_Mask.svg);
+    mask-mode: alpha;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: 100%;
+
+    transition: background-color 0.2s ease-out;
+}
+
+.header ul {
+    padding: 0;
+    margin: 0;
+
+    overflow: hidden;
+
+    list-style: none;
+    background-color: #313539;
+}
+
+.header li a {
+    display: block;
+    padding: 20px 20px;
+
+    color: #edefef;
     
-    backdrop-filter: blur(0.15em) brightness(0.8);
-}
-
-/******************************/
-/************ Logo ************/
-/******************************/
-.logo {
-    z-index: 2;
-    width: 15em;
- }
-
-.logo img {
-    max-height: 100%;
-    max-width: 100%;
-}
-
-.logo img:hover {
-    filter: brightness(70%);
-}
-
-.logo img:active {
-    filter: brightness(100%);
-}
-
-.linkContainer {
-    list-style-type: none;
-}
-
-.link {
-    color: #fff;
+    font-size: 1em;
     text-decoration: none;
 }
 
-/* Mobile Styles */
-@media only screen and (max-width: 400px) {
+.header li a:hover,
+.header .menu-btn:hover {
+    background-color: #edefef;
+    color: #313539;
+}
+
+/* menu */
+
+.header .menu {
+    max-height: 0;
+    clear: both;
+    transition: max-height .2s ease-out;
+}
+
+/* menu icon */
+
+.header .menu-icon {
+    position: relative;
+    float: right;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    aspect-ratio: 1/1;
+
+    user-select: none;
+    cursor: pointer;
+}
+
+.header .menu-icon .navicon {
+    position: relative;
+
+    display: block;
+    height: 4px;
+    width: 32px;
+
+    background: #edefef;
+
+    transition: all 0.2s ease-out;
+}
+
+.header .menu-icon .navicon:before,
+.header .menu-icon .navicon:after {
+    position: absolute;
+
+    display: block;
+    height: 100%;
+    width: 100%;
+
+    background: #edefef;
+
+    content: "";
+    transition: all 0.2s ease-out;
+}
+
+.header .menu-icon .navicon:before {
+    top: 10px;
+}
+
+.header .menu-icon .navicon:after {
+    top: -10px;
+}
+
+/* menu btn */
+
+.header .menu-btn {
+    display: none;
+}
+
+.header .menu-btn:checked~.menu {
+    max-height: 240px;
+    box-shadow: 0px 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.header .menu-btn:checked~.menu-icon .navicon {
+    background: transparent;
+}
+
+.header .menu-btn:checked~.menu-icon .navicon:before {
+    transform: translate(0, -10px) rotate(-45deg);
+}
+
+.header .menu-btn:checked~.menu-icon .navicon:after {
+    transform: translate(0, 10px) rotate(45deg);
+}
+
+@media only screen and (min-width: 600px) and (max-width: 899px) {
+    /* header */
+
     .header {
-        position: absolute;
-        padding: 1em 1em;
+        height: 6em;
     }
 
-    /******************************/
-    /***** Hamburger Icon/Anim ****/
-    /******************************/
-    .hamburgerIcon,
-    .xIcon {
-        z-index: 2;
+    .header .logo-container {
+        width: 40%;
     }
 
-    .hamburgerIcon {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-
-        height: 40px;
+    .header li a {
+        padding: 30px;        
+        font-size: 1.5em;
     }
 
-    .bar1,
-    .bar2,
-    .bar3 {
-        height: 0.5em;
+    /* menu icon */
+
+    .header .menu-icon .navicon {
+        height: 5px;
         width: 40px;
-
-        background-color: #fff;
-        opacity: 100;
-
-        transition: opacity 0.2s ease, transform 0.4s ease;
     }
 
-    .xIcon .bar1 {
-        transform: translate(0em, 0.5em) rotate(-45deg);
+    .header .menu-icon .navicon:before {
+        top: 12.5px;
     }
 
-    .xIcon .bar2 {
-        opacity: 0;
+    .header .menu-icon .navicon:after {
+        top: -12.5px;
     }
 
-    .xIcon .bar3 {
-        transform: translate(0em, -0.5em) rotate(45deg);
+    /* menu btn */
+
+    .header .menu-btn:checked~.menu {
+        max-height: 300px;
     }
 
-    /******************************/
-    /************ Menu ************/
-    /******************************/
-    .menu {
-        position: fixed;
-        left:0vw;
-        top: 0vh;
-        z-index: 1;
-
-        height: 100vh;
-        width: 100vw;
-
-        backdrop-filter: blur(0.5em) brightness(0.25);
-        background-color: transparent;
-
-        transition: left 0.4s ease;
+    .header .menu-btn:checked~.menu-icon .navicon:before {
+        transform: translate(0, -12.5px) rotate(-45deg);
     }
 
-    .menuActive {
-        left: 0vw;
-    }
-
-    .menuInactive {
-        left: 100vw;
-    }
-
-    .linkContainer {
-        position: relative;
-        top: 7em;
-
-        margin: 3em;
-    }
-
-    .link {
-        font-size: 2em;
-        text-decoration: none;
-    }
-
-    .link:hover {
-        color: gray;
+    .header .menu-btn:checked~.menu-icon .navicon:after {
+        transform: translate(0, 12.5px) rotate(45deg);
     }
 }
 
-/* Tablet Styles */
-@media only screen and (min-width: 401px) and (max-width: 960px) {
+@media only screen and (min-width: 900px) and (max-width: 1199px) {
     .header {
-        position: absolute;
-        padding: 2em 3em;
+        background: transparent;
     }
 
-    /******************************/
-    /***** Hamburger Icon/Anim ****/
-    /******************************/
-    .hamburgerIcon,
-    .xIcon {
-        z-index: 2;
+    .header .logo-container {
+        width: 20vw;
     }
 
-    .hamburgerIcon {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-
-        height: 30px;
+    .header ul {
+        background: transparent;
     }
 
-    .bar1,
-    .bar2,
-    .bar3 {
-        height: 0.3em;
-        width: 35px;
-
-        background-color: #fff;
-        opacity: 100;
-
-        transition: opacity 0.2s ease, transform 0.4s ease;
+    .header li {
+        float: left;
     }
 
-    .xIcon .bar1 {
-        transform: translate(0em, 0.3em) rotate(-45deg);
+    .header li a {
+        padding: 20px 30px;
+        color: #313539;
     }
 
-    .xIcon .bar2 {
-        opacity: 0;
+    .header .menu {
+        float: right;
+        max-height: none;
+        clear: none;
     }
 
-    .xIcon .bar3 {
-        transform: translate(0em, -0.3em) rotate(45deg);
-    }
-
-    /******************************/
-    /************ Menu ************/
-    /******************************/
-    .menu {
-        position: fixed;
-        left:0vw;
-        top: 0vh;
-        z-index: 1;
-
-        height: 100vh;
-        width: 100vw;
-
-        backdrop-filter: blur(0.5em) brightness(0.25);
-        background-color: transparent;
-
-        transition: top 0.4s ease;
-    }
-
-    .menuActive {
-        top: 0vh;
-    }
-
-    .menuInactive {
-        top: -100vh;
-    }
-
-    .linkContainer {
-        position: relative;
-        top: 7em;
-
-        margin: 3em;
-    }
-
-    .link {
-        font-size: 2em;
-        text-decoration: none;
-    }
-
-    .link:hover {
-        color: gray;
-    }
-}
-
-/* Desktop Styles */
-@media only screen and (min-width: 961px) {
-    .header {
-        position: absolute;
-        padding: 2em 3em;
-    }
-        
-    .menuIcon {
+    .header .menu-icon {
         display: none;
     }
-
-    .menu {
-        display: flex;
-        justify-content: space-between;
-
-        width: 10em;
-        z-index: 0;
-    }
-
-    .link {
-        font-size: 1.1em;
-        z-index: 2;
-    }
-
-    .link:hover {
-        color: gray;
-    }
 }
 
+@media only screen and (min-width: 1200px) {
+    .header {
+        background: transparent;
+    }
+
+    .header .logo-container {
+        width: 15em;
+    }
+
+    .header ul {
+        background: transparent;
+    }
+
+    .header li {
+        float: left;
+    }
+
+    .header li a {
+        padding: 20px 30px;
+        color: #313539;
+    }
+
+    .header .menu {
+        float: right;
+        max-height: none;
+        clear: none;
+    }
+
+    .header .menu-icon {
+        display: none;
+    }
+}
 </style>

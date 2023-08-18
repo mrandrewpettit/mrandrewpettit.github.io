@@ -1,9 +1,9 @@
 <template>
     <div class="carouselContainer">
         <div class="slideContainer" >
-            <router-link class="slide" to="/"><img src="../assets/posters/ElementalPoster.png" /></router-link>
-            <router-link class="slide" to="/"><img src="../assets/posters/InsideOut2Poster.png" /></router-link>
-            <router-link class="slide" to="/"><img src="../assets/posters/CenotePoster.png" /></router-link>
+            <router-link class="slide" to="/"><img src="images//posters/ElementalPoster.png" /></router-link>
+            <router-link class="slide" to="/"><img src="images//posters/InsideOut2Poster.png" /></router-link>
+            <router-link class="slide" to="/"><img src="images//posters/CenotePoster.png" /></router-link>
         </div>
         <div class="buttonContainer">
             <div class="button" v-on:click="plusSlide(-1)">&#10094;</div>
@@ -41,7 +41,7 @@ export default {
                 this.indicators[i].style.background = "none";
             }
             this.slides[this.slideIndex - 1].style.display = "block";
-            this.indicators[this.slideIndex - 1].style.background = "white";
+            this.indicators[this.slideIndex - 1].style.background = "#313539";
         },
         plusSlide(n) {
             this.showSlide(this.slideIndex += n);
@@ -79,7 +79,6 @@ export default {
 
     height: 100%;
     width: 100%;
-    padding: 2em 0em;
 }
 
 .slideContainer {
@@ -103,16 +102,19 @@ export default {
     justify-content: space-between;
     height: 10%;
     width: 15em;
+    margin-top: 0.5em;
 }
 
 .button {
-    height: 100%;
-    width: 10%;
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100%;
+    width: 10%;
+
+    color: #313539;
+
     font-size: 2em;
-    color: white;
 }
 
 .button:hover {
@@ -130,9 +132,10 @@ export default {
 .indicator {
     height: 1em;
     width: 1em;
-    border: 0.15em solid white;
     padding: 0.3em;
+    border: 0.15em solid #313539;
     border-radius: 0.6em;
+    
     cursor: pointer;
 }
 

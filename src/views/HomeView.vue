@@ -1,381 +1,619 @@
 <template>
-  <div>
-    <div v-bind:class="[widthFill ? 'section reel widthFill' : 'section reel heightFill']">
-      <!-- This is for sure not the best way to do responsive video because it
-        loads two videos at once but it's what I got working right now-->
-      <video autoplay muted loop v-show="mobileVideo" class="highlightReel">
-        <source src="../assets/video/HighlightReel/HighlightReel_Mobile.mp4" type="video/mp4">
-      </video>
-      <video autoplay muted loop v-show="desktopVideo" class="highlightReel">
-        <source src="../assets/video/HighlightReel/HighlightReel_Desktop.mp4" type="video/mp4">
-      </video>
-      <router-link to="/reel" class="reelButton">VIEW DEMO REEL</router-link>
-      <a class="arrow" href="#bio">&#11206;</a>
-    </div>
-    <div id="bio">
-      <div class="HasMargin">
-        <div class="margin"></div>
-        <div class="content">
-          <div class="about">
-              <img src="../assets/image/Profile.jpg" />
-              <div class="description">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
-                  eiusmod tempor incididunt ut labore et dolore magna aliqua. Aliquet 
-                  risus feugiat in ante metus dictum at.</p>
-                <p> Elementum nibh tellus molestie nunc non. Cursus sit amet dictum 
-                  sit amet.</p>
-                <div class="laurels">
-                  <img src="../assets/laurels/CTAWinnerLaurel.png" />
-                  <img src="../assets/laurels/LAFilmFestivalLaurel.png" />
+    <div class="home">
+        <div class="header-proxy"></div>
+        <div class="home-container">
+            <div class="auto-slider-container"><AutoSliderComponent/></div>
+            <div id="home-accent"></div>
+            <div class="title-card-container">
+                <div class="txt-container">
+                    <div id="name">
+                        <h1>ANDREW</h1>
+                        <h1>PETTIT</h1>
+                    </div>
+                    <div id="motto">
+                        <h3><span class="accent-txt">Creative</span> Collaborator,</h3>
+                        <h3>Passionate <span class="accent-txt">Problem Solver</span></h3>
+                    </div>
                 </div>
-              </div>
-          </div>
-          <div class="work">
-            <CarouselComponent v-bind:class="[showCarousel ? 'show' : 'hide']"/>
-            <GalleryComponent v-bind:class="[showCarousel ? 'hide' : 'show']"/>
-          </div>
+                <div class="btn-container">
+                    <router-link to="/reel" class="btn"><b>VIEW DEMO REEL</b></router-link>
+                    <a class="btn" href="#about-me-anchor"><b>ABOUT ME</b></a>
+                </div>
+            </div>
         </div>
-        <div class="margin"></div>
-      </div>
-      <div class="employers">
-        <img id="pixarLogo" src="../assets/logos/PixarLogo_black.svg" />
-        <img src="../assets/logos/AngelStudiosLogo_black.svg" />
-        <img src="../assets/logos/BYUTvLogo_black.svg" />
-      </div>
-    </div>
-  </div>
+        <div id="about-me-anchor"></div>
+        <div class="about-me-container">
+            <h1 class="heading"><b>WHO I AM</b></h1>
+            <div class="context">
+                <img src="../assets/image/profile.png" >
+                <div class="txt-container">
+                    <p>I am a problem solver. Through team collaboration, I use 
+                        design and software to solve visual problems.</p>
+                    <p>I received my B.F.A. in animation with a focus in computer 
+                        science from Brigham Young University. Since then, I have 
+                        worked in many aspects of production, from modeling to 
+                        pipeline; but am primarily skilled in look development, 
+                        and scripting.</p>
+                    <p>I have worked for Angel Studios and Pixar Animation Studios, 
+                        where I primarily developed digital tools to increase 
+                        artist productivity and collaborated on unique looks for 
+                        characters; all while supporting lighting, CFX, and 
+                        modeling departments with their own visual problems.</p>
+                    <p>I am continuously searching for new and innovative ways to 
+                        solve problems.</p>
+                </div>
+            </div>
+        </div>
+        <h1 class="heading"><b>WHAT I DO</b></h1>
+        <div class="poster-container"><component v-bind:is="currentPosterComponent" /></div>
+        <div class="client-container">
+            <div class="logo-container"><div class="logo-mask" id="pixar-logo"></div></div>
+            <div class="logo-container"><div class="logo-mask" id="angel-logo"></div></div>
+            <div class="logo-container"><div class="logo-mask" id="byu-tv-logo"></div></div>
+        </div>
+   </div>
 </template>
 
 <script>
+import AutoSliderComponent from "../components/AutoSliderComponent"
 import CarouselComponent from "../components/CarouselComponent.vue"
-import GalleryComponent from "../components/Gallery.vue"
+import PosterGridComponent from "../components/PosterGridComponent.vue"
 
 export default {
-  name: 'HomeView',
-  components: {
-    CarouselComponent,
-    GalleryComponent
-  },
-  data() {
-    return {
-      mobileVideo: false,
-      desktopVideo: false,
-      widthFill: true,
-      showCarousel: true
-    }
-  },
-  methods: {
-    queryVideo() {
-      var windowWidth = window.innerWidth ? window.innerWidth : this.$attrs(window).width();
-      if (windowWidth > 400) {
-        this.mobileVideo = false;
-        this.desktopVideo = true;
-      } else {
-        this.mobileVideo = true;
-        this.desktopVideo = false;
-      }
+    name: 'HomeView',
+    components: {
+        AutoSliderComponent,
+        CarouselComponent,
+        PosterGridComponent
     },
-    queryFill() {
-      var windowWidth = window.innerWidth ? window.innerWidth : this.$attrs(window).width();
-      var windowHeight = window.innerHeight ? window.innerHeight : this.$attrs(window).height();
-      var videoWidth = 1920;
-      var videoHeight = 1080;
+    data () {
+        return {
+            currentPosterComponent: PosterGridComponent
+        }
+    },
+    methods: {
+        GetPosterComponent() {
+            let isMobile = window.matchMedia("(max-width: 599px)");
 
-      var windowAspect = windowWidth / windowHeight;
-      var videoAspect = videoWidth / videoHeight;
-
-      if (windowAspect > videoAspect) {
-        this.widthFill = true;
-      } else {
-        this.widthFill = false;
-      }
+            if (isMobile.matches) {
+                this.currentPosterComponent = CarouselComponent;
+            }
+        }
     },
-    myEventHandler() {
-      this.queryVideo();
-      this.queryFill();
-    },
-    queryPosters() {
-      var windowWidth = window.innerWidth ? window.innerWidth : this.$attrs(window).width();
-      if (windowWidth > 400) {
-        this.showCarousel = false;
-      } else {
-        this.showCarousel = true;
-      }
+    created() {
+        this.GetPosterComponent();
     }
-  },
-  mounted() {
-    this.queryVideo();
-    this.queryFill();
-    this.queryPosters();
-  },
-  created() {
-    window.addEventListener("resize", this.myEventHandler);
-  },
-  destroyed() {
-    window.removeEventListener("resize", this.meEventHandler);
-  }
 }
 </script>
 
 <style scoped>
-.section {
-  display: flex;
+/* utilities */
 
-  height: 100vh;
-  width: 100%;
+.header-proxy {
+    height: 4em;
 }
 
-.reel {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.btn {
+    display: block;
+    height: 3em;
+    width: 65%;
+    border: none;
+    border-radius: 1.5em;
+    margin: 0 auto;
+
+    background-color: #29abe2;
+
+    font-size: 1em;
+    color: #edefef;
 }
 
-.reelButton {
-  position: absolute;
-  top: 80vh;
-
-  padding: 1em;
-
-  text-align: center;
-  font-weight: bold;
-  color: rgb(58, 58, 58);
-
-  opacity: 70%;
-
-  text-decoration: none;
-  background-color: rgb(201, 201, 201);
-  backdrop-filter: blur(0.15em) brightness(0.8);
-
-  border-radius: 0.5em;
+.btn:hover {
+    border: solid 4px #29abe2;
+    background-color: #edefef;
+    color: #29abe2;
 }
 
-.reelButton:hover {
-  opacity: 100%;
-  background-color: white;
+.btn-container a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
 }
 
-.arrow {
-  position: absolute;
-  top: 85vh;
+.heading {
+    display: block;
+    width: 85%;
+    padding-bottom: 0.5em;
+    border-bottom: solid 3px #29abe2;
+    margin: 1em auto;
 
-  font-size: 10vh;
+    color: #313539;
 
-  text-decoration: none;
-  color: white;
-  opacity: 50%;
+    text-align: center;
 }
 
-.arrow:hover {
-  opacity: 100%;
+/* title card */
+
+.auto-slider-container {
+    height: calc(100vh - 4em);
+    width: 100%;
 }
 
-#bio {
-  display: flex;
-  flex-direction: column;
-  width: 100vw;
+#home-accent {
+    display: none;
 }
 
-.HasMargin {
-  display: flex;
+.title-card-container {
+    position: absolute;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: calc(100vh - 4em);
+    width: 100%;
+    padding: 9em 0;
+
+    background-color: #313539cc;
+
+    transform: translateY(-100%);
+
 }
 
-.work .hide {
-  display: none;
-}
-
-#pixarLogo {
-  max-width: 100%;
-}
-
-.heightFill {
-  overflow-x: hidden;
-}
-
-.heightFill .highlightReel {
-  height: 100%;
-}
-
-.widthFill {
-  overflow-y: hidden;
-}
-
-.widthFill .highlightReel {
-  width: 100%;
-  z-index: 0;
-}
-
-/* Mobile Styles */
-@media only screen and (max-width: 400px) {
-  .content {
-    width: 80vw;
-  }
-
-  .margin {
-    height: 100%;
-    width: 10vw;
-  }
-
-  .about {
+.title-card-container .txt-container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 2em 0;
-  }
+    height: auto%;
+    width: 90%;
+}
 
-  .about img {
-    max-width: 100%;
-  }
+.title-card-container .txt-container #name {
+    padding-bottom: 0.75em;
 
-  .about .description p {
-    padding: 1em 0;
-  }
+    color: #edefef;
+    
+    font-size: 8vw;
+    font-weight: 800;
+}
 
-  .laurels {
+.title-card-container .txt-container #motto {
+    padding-top: 0.75em;
+
+    color: #edefef;
+
+    font-size: 5vw;
+    text-align: right;
+}
+
+.title-card-container .txt-container .accent-txt {
+    color: #29abe2;
+}
+
+.title-card-container .btn-container {
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
-  }
+    height: auto;
+    width: 100%;
+}
 
-  .laurels img{
-    max-width: 40%;
-  }
+.title-card-container .btn-container .btn {
+    margin: 1em auto;
+}
 
-  .work {
-    height: 35em;
-  }
+/* about me */
 
-  .employers {
+#about-me-anchor {
     position: relative;
-    height: 10em;
-    width: 100vw;
-    background-color: #fff;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+    top: -4em;
 }
 
-/* Tablet Styles */
-@media only screen and (min-width: 401px) and (max-width: 960px) {
-  .content {
-    width: 70vw;
-  }
-
-  .margin {
-    height: 100%;
-    width: 15vw;
-  }
-
-  .about {
-    display: flex;
-    justify-content: space-between;
-    padding: 2em 0;
-  }
-
-  .about img {
-    max-height: 20em;
-  }
-
-  .about .description {
-    padding-left: 1em;
-  }
-
-  .about .description p {
-    padding: 1em 0;
-  }
-
-  .laurels {
-    display: flex;
-    justify-content: space-around;
-  }
-
-  .laurels img{
-    max-width: 40%;
-  }
-
-  .work {
-    height: 21em;
-    padding:2em 0em;
-  }
-
-  .employers {
-    height: 5em;
-    width: 100vw;
-    background-color: #fff;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-content: center;
-  }
-
-  .employers img {
-    max-height: 50%;
-    padding: 0em 2.5em;
-  }
+.about-me-container img {
+    display: none;
 }
 
-/* Desktop Styles */
-@media only screen and (min-width: 961px) {
-  .content {
-    width: 65vw;
-  }
-
-  .margin {
-    height: 100%;
-    width: 17.5vw;
-  }
-
-  .main {
+.about-me-container .txt-container {
     display: flex;
-    justify-content: space-between;
-    height: 80%;
-  }
+    flex-direction: column;
+    align-items: center;
+    margin: 0 2em;
 
-  .about {
+}
+
+.about-me-container p {
+    width: 100%;
+    margin: 0.75em 0em;
+    color: #313539;
+}
+
+/* posters */
+
+.poster-container {
+    width: 85%;
+    margin: 2.5em auto;
+}
+
+/* clients */
+
+.client-container {
     display: flex;
-    justify-content: space-between;
-    padding: 2em 0;
-  }
-
-  .about img {
-    max-height: 20em;
-  }
-
-  .about .description {
-    padding-left: 1em;
-  }
-
-  .about .description p {
-    padding: 1em 0;
-  }
-
-  .laurels {
-    display: flex;
+    flex-direction: column;
+    align-items: space-around;
     justify-content: space-around;
-  }
+    width: 100%;
+    padding: 1em;
 
-  .laurels img{
-    max-width: 30%;
-  }
+    background-color: #313539;
+}
 
-  .work {
-    height: 35em;
-    padding: 2em;
-  }
+.client-container .logo-container {
+    height: 3em;
+    margin: 1.5em 0;
+}
 
-  .employers {
-    height: 7em;
-    width: 100vw;
-    background-color: #fff;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-content: center;
-  }
+.client-container .logo-mask {
+    height: 100%; 
+    width: 100%;
 
-  .employers img {
-    max-height: 50%;
-    padding: 0em 3.5em;
-  }
+    background-color: #edefef;
+
+    mask-mode: alpha;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+}
+
+.client-container #pixar-logo {
+    mask-image: url(../assets/logos/PixarLogo_Mask.svg);
+}
+
+.client-container #angel-logo {
+    mask-image: url(../assets/logos/AngelLogo_Mask.svg);
+}
+
+.client-container #byu-tv-logo {
+    mask-image: url(../assets/logos/BYUTVLogo_Mask.svg);
+}
+
+@media only screen and (min-width: 600px) and (max-width: 899px) {
+    /* utilities */
+    
+    .btn {
+        height: 4em;
+        width: 40%;
+        border-radius: 2em;
+
+        font-size: 1.25em;
+    }
+
+    /* title card */
+
+    .title-card-container {
+        padding: 5em 0;
+    }
+
+    .title-card-container .btn-container {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    /* about me */
+
+    #about-me-anchor {
+        top: -6em;
+    }
+
+    .about-me-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .about-me-container .context {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 1em;
+    }
+
+    .about-me-container img {
+        display: block;
+        width: 40vw;
+    }
+
+    /* clients */
+    .client-container {
+        flex-direction: row;
+    }
+
+    .client-container .logo-container {
+        width: 15em;
+    }
+
+}
+
+@media only screen and (min-width: 900px) and (max-width: 1199px) {
+    /* utilities */
+
+    .btn {
+        height: 3.5em;
+        width: 45%;
+        border-radius: 2em;
+
+        font-size: 1em;
+    }
+
+    .heading {
+        display: block;
+        width: 50%;
+        padding-bottom: 0.5em;
+        border-bottom: solid 3px #29abe2;
+        margin: 1em auto;
+
+        color: #313539;
+
+        text-align: center;
+    }
+
+    /* title card */
+    .home-container {
+        display: flex;
+        height: 100vh;
+    }
+
+    .auto-slider-container {
+        position: absolute;
+        z-index: 1;
+        top: calc(((100vh - 35vw) / 2) + 4em);
+        left: 2.5vw;
+
+        height: 35vw;
+        width: auto;
+    }
+
+    #home-accent {
+        position: relative;
+        top: -4em;
+
+        display: block;
+        height: calc(100vh + 4em);
+        width: 35%;
+        background-color: #313539;
+    }
+
+    .title-card-container {
+        position: static;
+
+        flex-direction: column;
+        align-items: flex-end;
+        width: 65%;
+        height: 100%;
+        padding: 15em 0;
+
+        background-color: #edefef;
+
+        transform: translateY(0);
+    }
+
+    .title-card-container .txt-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: auto;
+        width: 67.5%;
+        margin-right: 3vw;
+
+    }
+
+    .title-card-container .txt-container #name {
+        padding-bottom: 1em;
+
+        color: #313539;
+        
+        font-size: 3.5vw;
+        font-weight: 800;
+
+    }
+
+    .title-card-container .txt-container #motto {
+        padding-top: 0em;
+
+        color: #313539;
+
+        font-size: 2vw;
+        text-align: right;
+    }
+
+    .title-card-container .btn-container {
+        flex-direction: row;
+        align-items: center;
+
+        width: 60%;
+        margin-right: 7.5vw;
+    }
+
+    /* about me */
+
+    #about-me-anchor {
+        top: -4em;
+    }
+
+    .about-me-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .about-me-container .context {
+        display: flex;
+        align-items: center;
+        margin: 0 15%;
+    }
+
+    .about-me-container img {
+        display: block;
+        width: 40%;
+    }
+
+    /* posters */
+
+    .poster-container {
+        width: 85%;
+        margin: 2.5em auto;
+        margin-bottom: 5em;
+    }
+
+    /* clients */
+    .client-container {
+        flex-direction: row;
+        
+    }
+
+    .client-container .logo-container {
+        width: 15em;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    /* utilities */
+
+    .btn {
+        height: 3.5em;
+        width: 45%;
+        border-radius: 2em;
+
+        font-size: 1em;
+    }
+
+
+    .heading {
+        display: block;
+        width: 50%;
+        padding-bottom: 0.5em;
+        border-bottom: solid 3px #29abe2;
+        margin: 1em auto;
+
+        color: #313539;
+
+        text-align: center;
+    }
+
+    /* title card */
+    .home-container {
+        display: flex;
+        height: 100vh;
+    }
+
+    .auto-slider-container {
+        position: absolute;
+        z-index: 1;
+        top: calc(((100vh - 35vw) / 2) + 4em);
+        left: 2.5vw;
+
+        height: 35vw;
+        width: auto;
+    }
+
+    #home-accent {
+        position: relative;
+        top: -4em;
+
+        display: block;
+        height: calc(100vh + 4em);
+        width: 35%;
+        background-color: #313539;
+    }
+
+    .title-card-container {
+        position: static;
+
+        flex-direction: column;
+        align-items: flex-end;
+        width: 65%;
+        height: 100%;
+        padding: 11em 0;
+
+        background-color: #edefef;
+
+        transform: translateY(0);
+    }
+
+    .title-card-container .txt-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: auto;
+        width: 67.5%;
+        margin-right: 3vw;
+    }
+
+    .title-card-container .txt-container #name {
+        padding-bottom: 1em;
+
+        color: #313539;
+        
+        font-size: 3.5vw;
+        font-weight: 800;
+
+    }
+
+    .title-card-container .txt-container #motto {
+        padding-top: 0em;
+
+        color: #313539;
+
+        font-size: 2vw;
+        text-align: right;
+    }
+
+    .title-card-container .btn-container {
+        flex-direction: row;
+        align-items: center;
+
+        width: 60%;
+        margin-right: 7.5vw;
+    }
+    
+    /* about me */
+
+    #about-me-anchor {
+        top: -4em;
+    }
+
+    .about-me-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .about-me-container .context {
+        display: flex;
+        align-items: center;
+        margin: 0 15%;
+    }
+
+    .about-me-container img {
+        display: block;
+        width: 40%;
+    }
+
+    /* posters */
+    
+    .poster-container {
+        width: 60%;
+        margin: 2.5em auto;
+        margin-bottom: 5em;
+    }
+
+    /* clients */
+    .client-container {
+        flex-direction: row;
+    }
+
+    .client-container .logo-container {
+        width: 15em;
+    }
 }
 </style>

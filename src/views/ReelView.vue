@@ -1,38 +1,56 @@
+
 <template>
-    <div class="reelContainer">
-      <div class="headerProxy" />
-      <h1 class="title">REEL</h1>
-      <div class="videoContainer">
-        <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/839743736?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Andrew Pettit Demo Reel 2023"></iframe></div>
-      </div>
+  <div class="resumeContainer">
+    <div class="headerProxy" />
+    <h1 class="title">REEL</h1>
+    <div class="content">
+      <div class="margin"></div>
+      <iframe src="https://drive.google.com/file/d/14iahnDpO74qso3da0cmhUYbBZ71PJWyQ/preview" frameborder="0"></iframe>
+      <div class="margin"></div>
     </div>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'ReelView',
+name: 'ReelView',
 }
 </script>
 
 <style scoped>
-.reelContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100vh;
+.resumeContainer {
+display: flex;
+flex-direction: column;
+align-items: center;
+height: 100vh;
 }
 
 .headerProxy {
-  height: 6em;
-  background-color: black;
+height: 6em;
+background-color: rgb(36, 36, 36);
 }
 
 .title {
-  padding: 0.5em;
+padding: 1em;
 }
 
-.videoContainer {
-  width: 70vw;
-  padding: 1em;
+.content {
+display: flex;
+
+padding-top: 5em;
+
+height: 100%;
+width: 100%;
+}
+
+iframe {
+  width: 100%;
+  height: 58.8%;
+}
+
+@media only screen and (min-width: 400px) {
+.margin {
+  width: 20vw;
+}
 }
 </style>

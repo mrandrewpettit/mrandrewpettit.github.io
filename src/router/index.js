@@ -16,7 +16,10 @@ const routes = [
     path: '/reel',
     name: 'reel',
     component: () => import(`@/views/ReelView.vue`),
-    meta: { layout: "HomeLayout" }
+    meta: { 
+      layout: "HomeLayout",
+      requiresAuth: true
+    }
   },
   {
     path: '/work',
