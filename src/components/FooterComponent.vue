@@ -27,18 +27,22 @@ footer {
     justify-content: center;
 
     width: 100%;
+
+    background-color: #edefef;
 }
 
 .txt-container {
     width: 100%;
-    margin: 2em 0em 0em 0em;
+    padding: 3em 0em;
 }
 
 .txt-container h4,
 .txt-container p {
     margin: 0.5em;
-    color: #313539;
+    color: #727c84;
     text-align: center;
+
+    font-size: 1em;
 }
 
 .social-container {
@@ -57,7 +61,7 @@ footer {
     height: 100%; 
     width: 100%;
 
-    background-color: #313539;
+    background-color: #727c84;
 
     mask-mode: alpha;
     mask-position: center;
@@ -79,6 +83,7 @@ footer {
 
 #copyright {
     margin: 0.5em 0em 1.5em 0em;
+    color: #727c84;
 }
 
 @media only screen and (min-width: 600px) and (max-width: 899px) {

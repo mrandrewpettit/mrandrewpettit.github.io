@@ -3,7 +3,6 @@
         <div class="header-proxy"></div>
         <div class="home-container">
             <div class="auto-slider-container"><AutoSliderComponent/></div>
-            <div id="home-accent"></div>
             <div class="title-card-container">
                 <div class="txt-container">
                     <div id="name">
@@ -153,10 +152,6 @@ export default {
     width: 100%;
 }
 
-#home-accent {
-    display: none;
-}
-
 .title-card-container {
     position: absolute;
 
@@ -256,9 +251,9 @@ export default {
     align-items: space-around;
     justify-content: space-around;
     width: 100%;
-    padding: 1em;
+    padding-top: 1em;
 
-    background-color: #313539;
+    background-color: #29abe2;
 }
 
 .client-container .logo-container {
@@ -382,18 +377,9 @@ export default {
         width: auto;
     }
 
-    #home-accent {
-        position: relative;
-        top: -4em;
-
-        display: block;
-        height: 100vh;
-        width: 35%;
-        background-color: #313539;
-    }
-
     .title-card-container {
-        position: static;
+        position: relative;
+        left: 35%;
 
         flex-direction: column;
         align-items: flex-end;
@@ -402,7 +388,7 @@ export default {
         height: calc(100% - 4em);;
         padding: 15em 0;
 
-        background-color: #edefef;
+        background-color: transparent;
 
         transform: translateY(0);
     }

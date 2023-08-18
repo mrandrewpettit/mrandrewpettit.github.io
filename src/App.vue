@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+    <div id="background-accent"></div>
+    <div id="background-main"></div>
     <AppLayout>
       <router-view/>
     </AppLayout>
@@ -30,10 +32,32 @@ html {
 
 #app {
   font-family: "Montserrat", Verdana, sans-serif;
-  /*-webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #999;*/
+}
+
+#background-accent {
+  display: none;
+}
+
+#background-main {
+  position: fixed;
+  z-index: -2;
+
+  height: 100%;
+  width: 100%;
+
   background-color: #edefef;
+}
+
+@media only screen and (min-width: 900px) {
+  #background-accent {
+    position: absolute;
+    z-index: -1;
+    display: block;
+    height: 100%;
+    width: 35%;
+
+    background-color: #313539;
+  }
 }
 
 </style>
