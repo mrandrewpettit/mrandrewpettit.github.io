@@ -14,8 +14,7 @@
     <div class="headerProxy"></div>
     <h1 class="title">REEL</h1>
     <div class="content">
-		<iframe src="https://drive.google.com/file/d/10MDXTB1dn6YF0SzScw0kLLvMCC2hbCJ_/preview" title="Demo Reel" 
-			allow="autoplay" frameborder="0"></iframe>
+		<video src="../assets/videos/DemoReel.08.31.2023.LookDev_Protected.mp4" controls></video>
 		<div class="breakdownContainer">
 			<h2 class="title">BREAKDOWN</h2>
 			<h4>Elemental - Fire Characters (00:02 - 00:19)</h4>
@@ -194,7 +193,7 @@ export default {
 	width: 100%;
 }
 
-iframe {
+video {
   width: 100%;
   aspect-ratio: 16/9;
   padding: 1em 3em;
@@ -234,7 +233,7 @@ iframe {
 		width: 35%;
 	}
 
-	iframe {
+	video {
 		width: 80%;
 		margin: auto;
 	}
@@ -249,7 +248,7 @@ iframe {
 		width: 35%;
 	}
 
-	iframe {
+	video {
 		width: 60%;
 		margin: auto;
 	}
