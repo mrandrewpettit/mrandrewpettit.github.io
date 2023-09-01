@@ -12,7 +12,7 @@
 							<h1>PETTIT</h1>
 						</div>
 						<div id="motto">
-							<h3>Designing <span class="accent-txt">Creative</span> Solutions <!--Collaborator--></h3>
+							<h3>Finding <span class="accent-txt">Creative</span> Solutions <!--Collaborator--></h3>
 							<h3><!--Passionate -->For Visual <span class="accent-txt">Problems</span></h3>
 						</div>
 					</div>
