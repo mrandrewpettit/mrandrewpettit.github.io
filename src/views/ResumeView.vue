@@ -5,9 +5,7 @@
       <div class="headerProxy" />
       <h1 class="title">RESUME</h1>
       <div class="content">
-        <div class="margin"></div>
-        <object id="resume" data="resume2023.pdf"></object>
-        <div class="margin"></div>
+        <object id="resume" data="resume2023.pdf" ></object>
       </div>
     </div>
 	<FooterComponent/>
@@ -32,7 +30,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 120vh;
 }
 
 .headerProxy {
@@ -46,18 +43,21 @@ export default {
 
 .content {
   display: flex;
+  justify-content: space-around;
+  align-items: space-around;
 
-  height: 100%;
   width: 100%;
 }
 
 #resume {
-  width: 100%;
-}
+	width: 100%;
+	aspect-ratio: 8.5/11;
+	}
 
-@media only screen and (min-width: 400px) {
-  .margin {
-    width: 20vw;
-  }
+@media only screen and (min-width: 1200px) {
+	#resume {
+	width: 45vw;
+	aspect-ratio: 8.5/11;
+	}
 }
 </style>
