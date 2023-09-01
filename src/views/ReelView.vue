@@ -14,7 +14,7 @@
     <div class="headerProxy"></div>
     <h1 class="title">REEL</h1>
     <div class="content">
-		<video src="../assets/videos/DemoReel.08.31.2023.LookDev_Protected.mp4" controls></video>
+		<iframe src="https://www.youtube.com/embed/TbBkM-1PyI8?si=IisiQKxvXZGoCCpk" title="YouTube iframe player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 		<div class="breakdownContainer">
 			<h2 class="title">BREAKDOWN</h2>
 			<h4>Elemental - Fire Characters (00:02 - 00:19)</h4>
@@ -182,6 +182,7 @@ export default {
 }
 
 .title {
+	
 	padding: 0.5em;
 }
 
@@ -193,7 +194,7 @@ export default {
 	width: 100%;
 }
 
-video {
+iframe {
   width: 100%;
   aspect-ratio: 16/9;
   padding: 1em 3em;
@@ -233,7 +234,7 @@ video {
 		width: 35%;
 	}
 
-	video {
+	iframe {
 		width: 80%;
 		margin: auto;
 	}
@@ -248,7 +249,7 @@ video {
 		width: 35%;
 	}
 
-	video {
+	iframe {
 		width: 60%;
 		margin: auto;
 	}
