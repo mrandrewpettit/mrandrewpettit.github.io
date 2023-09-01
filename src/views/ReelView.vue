@@ -55,14 +55,14 @@
 			<ul>
 				<li>I am responsible for all aspects, and it was developed from scratch. The tool takes in an input geometry, and then procedurally generated leaves, seeds and a shader. Users can then control the look of the shader via exposed UI parameters.</li>
 			</ul>
-			<h4>Cenote - Xochi (01:46 - 01:57)</h4>
+			<h4>Cenote - Xochimilco (01:46 - 01:57)</h4>
 			<ul>
 				<li>Cenote was my university class’s capstone project that was awarded the 2023 College Television Award ( or College Emmy). I was the producer and a technical artist on the film. In these shots I created all the environment models (except for seaweed), materials,  and set dress.</li>
-				<li>I worked with three others to develop any shot VFXincluding plant movement, underwater murk look, and comp work.</li>
+				<li>I worked with three others to develop any shot VFX including plant movement, underwater murk look, and comp work.</li>
 			</ul>
 			<h4>Cenote - Tree Generator (01:58 - 02:11)</h4>
 			<ul>
-				<li>I had experience with houdini’s internal 3-node system to procedurally develop curve based trees. To support art on Cenote, I used the node system as a base, exposed the inner nodes and developed a tree generator that gave a default look art desired. My tool  accepts an input curve as a tree trunk, and considerably simplified the exposed UI controls for other artists to easily control branch length, scatter, and amount.</li>
+				<li>I had experience with Houdini’s internal 3-node system to procedurally develop curve based trees. To support art on Cenote, I used the node system as a base, exposed the inner nodes and developed a tree generator that gave a default look art desired. My tool  accepts an input curve as a tree trunk, and considerably simplified the exposed UI controls for other artists to easily control branch length, scatter, and amount.</li>
 				<li>A large portion of development was creating a procedural bark and leaf material, from scratch, that would work for any tree generated.</li>
 			</ul>
 			<h4>Cenote - Ivy Generator (02:12 - 02:19)</h4>
@@ -134,7 +134,7 @@ export default {
 /* Password */
 #passwordContainer {
 	position: fixed;
-	height: 100vh;
+	height: 100%;
 	width: 100%;
 	background-color: #edefef;
 
@@ -174,7 +174,7 @@ export default {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	width: 100vw;
+	width: 100%;
 }
 
 .headerProxy {
@@ -204,7 +204,7 @@ iframe {
 }
 
 .content .breakdownContainer {
-	width: 100vw;
+	width: 100%;
 	background-color: #edefef;
 	margin-top: 2em;
 	padding: 1em 3em;

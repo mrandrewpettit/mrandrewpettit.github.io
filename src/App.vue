@@ -3,9 +3,7 @@
 		<div id="background-accent"></div>
 		<div id="background-main"></div>
 		<AppLayout>
-			<HeaderComponent/>
 			<router-view/>
-			<FooterComponent/>
 		</AppLayout>
 	</div>
 </template>

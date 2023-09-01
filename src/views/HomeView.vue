@@ -12,7 +12,7 @@
 							<h1>PETTIT</h1>
 						</div>
 						<div id="motto">
-							<h3><span class="accent-txt">Creative</span> Collaborator,</h3>
+							<h3><span class="accent-txt">Creative</span> Collaborator</h3>
 							<h3>Passionate <span class="accent-txt">Problem Solver</span></h3>
 						</div>
 					</div>
@@ -24,11 +24,11 @@
 			</div>
 			<div id="about-me-anchor"></div>
 			<div class="about-me-container">
-				<h1 class="heading"><b>WHO I AM</b></h1>
+				<h1 class="heading"><b>ABOUT ME</b></h1>
 				<div class="context">
-					<img src="../assets/image/profile.png" >
+					<img src="../assets/images/profile.png" >
 					<div class="txt-container">
-						<p>I am a problem solver. Through team collaboration, I use 
+						<p>I solve problems. Through team collaboration, I use 
 							design and software to solve visual problems.</p>
 						<p>I received my B.F.A. in animation with a focus in computer 
 							science from Brigham Young University. Since then, I have 
@@ -45,7 +45,7 @@
 					</div>
 				</div>
 			</div>
-			<h1 class="heading"><b>WHAT I DO</b></h1>
+			<h1 class="heading"><b>NOTABLE PROJECTS</b></h1>
 			<div class="poster-container"><component v-bind:is="currentPosterComponent" /></div>
 			<div class="client-container">
 				<div class="logo-container"><div class="logo-mask" id="pixar-logo"></div></div>
