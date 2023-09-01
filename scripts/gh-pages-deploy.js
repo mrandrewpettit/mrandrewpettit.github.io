@@ -9,9 +9,6 @@ const fs = require("fs");
     await execa("npm", ["run", "build"]);
     // Understand if it's dist or build folder
     const folderName = fs.existsSync("dist") ? "dist" : "build";
-    await execa("git", ["lfs", "track", "media/DemoReel.08.31.2023.LookDev_Protected.18aa4784.mp4"]);
-    await execa("git", ["config", "--global", "http.postBuffer", "2097152000"]);
-    await execa("git", ["config", "--global", "https.postBuffer", "2097152000"]);
     await execa("git", ["--work-tree", folderName, "add", "--all"]);
     await execa("git", ["--work-tree", folderName, "commit", "-m", "gh-pages"]);
     console.log("Pushing to gh-pages...");
