@@ -9,29 +9,17 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: () => import(`@/views/HomeView.vue`),
-    meta: { layout: "HomeLayout" }
+    component: () => import(`@/views/HomeView.vue`)
   },
   {
     path: '/reel',
     name: 'reel',
-    component: () => import(`@/views/ReelView.vue`),
-    meta: { 
-      layout: "HomeLayout",
-      requiresAuth: true
-    }
-  },
-  {
-    path: '/work',
-    name: 'work',
-    component: () => import(`@/views/WorkView.vue`),
-    meta: { layout: "HomeLayout" }
+    component: () => import(`@/views/ReelView.vue`)
   },
   {
     path: '/resume',
     name: 'resume',
-    component: () => import(`@/views/ResumeView.vue`),
-    meta: { layout: "HomeLayout" }
+    component: () => import(`@/views/ResumeView.vue`)
   }
 ]
 

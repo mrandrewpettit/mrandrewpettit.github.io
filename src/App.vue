@@ -1,19 +1,20 @@
 <template>
-  <div id="app">
-    <div id="background-accent"></div>
-    <div id="background-main"></div>
-    <AppLayout>
-      <router-view/>
-    </AppLayout>
-  </div>
+	<div id="app">
+		<div id="background-accent"></div>
+		<div id="background-main"></div>
+		<AppLayout>
+			<HeaderComponent/>
+			<router-view/>
+			<FooterComponent/>
+		</AppLayout>
+	</div>
 </template>
 
 <script>
-import AppLayout from "@/layouts/AppLayout"
+
 
 export default {
-  name: "App",
-  components: { AppLayout }
+	name: "App",
 }
 </script>
 

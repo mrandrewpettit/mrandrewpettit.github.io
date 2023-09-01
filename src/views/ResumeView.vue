@@ -1,4 +1,6 @@
 <template>
+<div>
+	<HeaderComponent/>
     <div class="resumeContainer">
       <div class="headerProxy" />
       <h1 class="title">RESUME</h1>
@@ -8,11 +10,20 @@
         <div class="margin"></div>
       </div>
     </div>
+	<FooterComponent/>
+</div>
 </template>
 
 <script>
+import HeaderComponent from "../components/HeaderComponent"
+import FooterComponent from "../components/FooterComponent"
+
 export default {
   name: 'ResumeView',
+  components: {
+		HeaderComponent,
+		FooterComponent
+    },
 }
 </script>
 

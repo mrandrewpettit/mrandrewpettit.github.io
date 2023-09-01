@@ -1,59 +1,65 @@
 <template>
-    <div class="home">
-        <div class="header-proxy"></div>
-        <div class="home-container">
-            <div class="auto-slider-container"><AutoSliderComponent/></div>
-            <div class="title-card-container">
-                <div class="txt-container">
-                    <div id="name">
-                        <h1>ANDREW</h1>
-                        <h1>PETTIT</h1>
-                    </div>
-                    <div id="motto">
-                        <h3><span class="accent-txt">Creative</span> Collaborator,</h3>
-                        <h3>Passionate <span class="accent-txt">Problem Solver</span></h3>
-                    </div>
-                </div>
-                <div class="btn-container">
-                    <router-link to="/reel" class="btn"><b>VIEW DEMO REEL</b></router-link>
-                    <a class="btn" href="#about-me-anchor"><b>ABOUT ME</b></a>
-                </div>
-            </div>
-        </div>
-        <div id="about-me-anchor"></div>
-        <div class="about-me-container">
-            <h1 class="heading"><b>WHO I AM</b></h1>
-            <div class="context">
-                <img src="../assets/image/profile.png" >
-                <div class="txt-container">
-                    <p>I am a problem solver. Through team collaboration, I use 
-                        design and software to solve visual problems.</p>
-                    <p>I received my B.F.A. in animation with a focus in computer 
-                        science from Brigham Young University. Since then, I have 
-                        worked in many aspects of production, from modeling to 
-                        pipeline; but am primarily skilled in look development, 
-                        and scripting.</p>
-                    <p>I have worked for Angel Studios and Pixar Animation Studios, 
-                        where I primarily developed digital tools to increase 
-                        artist productivity and collaborated on unique looks for 
-                        characters; all while supporting lighting, CFX, and 
-                        modeling departments with their own visual problems.</p>
-                    <p>I am continuously searching for new and innovative ways to 
-                        solve problems.</p>
-                </div>
-            </div>
-        </div>
-        <h1 class="heading"><b>WHAT I DO</b></h1>
-        <div class="poster-container"><component v-bind:is="currentPosterComponent" /></div>
-        <div class="client-container">
-            <div class="logo-container"><div class="logo-mask" id="pixar-logo"></div></div>
-            <div class="logo-container"><div class="logo-mask" id="angel-logo"></div></div>
-            <div class="logo-container"><div class="logo-mask" id="byu-tv-logo"></div></div>
-        </div>
+	<div>
+		<HeaderComponent/>
+		<div class="home">
+			<div class="header-proxy"></div>
+			<div class="home-container">
+				<div class="auto-slider-container"><AutoSliderComponent/></div>
+				<div class="title-card-container">
+					<div class="txt-container">
+						<div id="name">
+							<h1>ANDREW</h1>
+							<h1>PETTIT</h1>
+						</div>
+						<div id="motto">
+							<h3><span class="accent-txt">Creative</span> Collaborator,</h3>
+							<h3>Passionate <span class="accent-txt">Problem Solver</span></h3>
+						</div>
+					</div>
+					<div class="btn-container">
+						<router-link to="/reel" class="btn"><b>VIEW DEMO REEL</b></router-link>
+						<a class="btn" href="#about-me-anchor"><b>ABOUT ME</b></a>
+					</div>
+				</div>
+			</div>
+			<div id="about-me-anchor"></div>
+			<div class="about-me-container">
+				<h1 class="heading"><b>WHO I AM</b></h1>
+				<div class="context">
+					<img src="../assets/image/profile.png" >
+					<div class="txt-container">
+						<p>I am a problem solver. Through team collaboration, I use 
+							design and software to solve visual problems.</p>
+						<p>I received my B.F.A. in animation with a focus in computer 
+							science from Brigham Young University. Since then, I have 
+							worked in many aspects of production, from modeling to 
+							pipeline; but am primarily skilled in look development, 
+							and scripting.</p>
+						<p>I have worked for Angel Studios and Pixar Animation Studios, 
+							where I primarily developed digital tools to increase 
+							artist productivity and collaborated on unique looks for 
+							characters; all while supporting lighting, CFX, and 
+							modeling departments with their own visual problems.</p>
+						<p>I am continuously searching for new and innovative ways to 
+							solve problems.</p>
+					</div>
+				</div>
+			</div>
+			<h1 class="heading"><b>WHAT I DO</b></h1>
+			<div class="poster-container"><component v-bind:is="currentPosterComponent" /></div>
+			<div class="client-container">
+				<div class="logo-container"><div class="logo-mask" id="pixar-logo"></div></div>
+				<div class="logo-container"><div class="logo-mask" id="angel-logo"></div></div>
+				<div class="logo-container"><div class="logo-mask" id="byu-tv-logo"></div></div>
+			</div>
+	</div>
+	<FooterComponent/>
    </div>
 </template>
 
 <script>
+import HeaderComponent from "../components/HeaderComponent"
+import FooterComponent from "../components/FooterComponent"
 import AutoSliderComponent from "../components/AutoSliderComponent"
 import CarouselComponent from "../components/CarouselComponent.vue"
 import PosterGridComponent from "../components/PosterGridComponent.vue"
@@ -63,7 +69,9 @@ export default {
     components: {
         AutoSliderComponent,
         CarouselComponent,
-        PosterGridComponent
+        PosterGridComponent,
+		HeaderComponent,
+		FooterComponent
     },
     data () {
         return {
