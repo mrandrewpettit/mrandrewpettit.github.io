@@ -15,6 +15,7 @@ export default {
             /* images are being pulling from public folder */
             "images//posters/ElementalPoster.png",
             "images//posters/InsideOut2Poster.png",
+            "images//posters/PixarUnnanoucedPoster.png",
             "images//posters/CenotePoster.png"
             ]
         };

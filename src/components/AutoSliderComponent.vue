@@ -15,10 +15,12 @@ export default {
         return {
             images: [
             /* images are being pulling from public folder */
-            "images/homeAutoSlider/Fire_2.png",
-            "images/homeAutoSlider/water_1.png",
-			"images/homeAutoSlider/Fire_1.png",
-			"images/homeAutoSlider/AirStadium_1.png"
+            "images/homeAutoSlider/Elemental_Fire_2.png",
+            "images/homeAutoSlider/Elemental_water_1.png",
+            "images/homeAutoSlider/InsideOut2_SadnessDisgustPajama.png",
+			"images/homeAutoSlider/Elemental_Fire_1.png",
+            "images/homeAutoSlider/InsideOut2_FearPajama.png",
+			"images/homeAutoSlider/Elemental_AirStadium_1.png"
             ],
             timer: null,
             currentIndex: 0
